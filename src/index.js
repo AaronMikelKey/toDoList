@@ -1,2 +1,2 @@
 import './styles/style.css';
-require('./mystyles.scss');
+require('./styles/mystyles.scss');

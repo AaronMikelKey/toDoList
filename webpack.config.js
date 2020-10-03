@@ -7,33 +7,22 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
+    plugins: [new MiniCssExtractPlugin()],
     module: {
-        rules: [{
-            test: /\.s[ac]ss$/i,
-            use: [
-                MiniCssExtractPlugin.loader,
-                {
-                  loader: 'css-loader'
-                },
-                {
-                  loader: 'sass-loader',
-                  options: {
-                    sourceMap: true,
-                    publicPath: '/public/path/to/',
-                  }
-                }
-              ],
-            test: /\.(png|svg|jpg|gif)$/,
-            use: [
-            'file-loader',
-            ],
-            test: /\.(woff|woff2|eot|ttf|otf)$/,
-            use: [
-            'file-loader',
-            ],
-    plugins: [
-        new MiniCssExtractPlugin('css/mystyles.css'),
-      ]
-        }],
+      rules: [
+        {
+          test: /\.(sa|sc|c)ss$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                hmr: process.env.NODE_ENV === 'development', // webpack 4 only
+              },
+            },
+            'css-loader',
+            'sass-loader',
+          ],
+        },
+      ],
     },
-};
+  };
