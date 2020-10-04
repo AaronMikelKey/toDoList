@@ -1,5 +1,8 @@
 import './styles/style.css';
 require('./styles/mystyles.scss');
+import newListItem from './components/createItemBox';
+
+//DayJS requirements
 const dayjs = require('dayjs');
 const customParseFormat = require('./components/customParseFormat.js');
 dayjs.extend(customParseFormat);
@@ -8,5 +11,11 @@ dayjs.extend(customParseFormat);
 const now = dayjs();
 //sets format to e.g. Oct 03, 2020
 const dateF = 'MMM DD, YYYY';
-//Oct 03, 2020
-document.getElementById('dueDate').innerHTML = dayjs('2020-03-19').format(dateF);
+
+document.getElementsByClassName('dueDate')[0].innerHTML = dayjs('2020-03-19').format(dateF);
+
+//Test button
+const btn = document.createElement('button');
+btn.innerHTML = "click me";
+btn.onclick = newListItem;
+document.getElementById('main').appendChild(btn);
