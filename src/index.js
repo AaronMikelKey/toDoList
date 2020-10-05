@@ -1,6 +1,7 @@
 import './styles/style.css';
 require('./styles/mystyles.scss');
 import newListItem from './components/createToDoBox';
+import newProject from './components/createNewProject';
 
 //DayJS requirements
 const dayjs = require('dayjs');
@@ -20,3 +21,9 @@ btn.innerHTML = "Add to do item";
 btn.setAttribute('class', 'fas fa-plus');
 btn.onclick = newListItem;
 document.getElementsByClassName('project')[0].appendChild(btn);
+
+const newBtn = document.createElement('button');
+newBtn.innerHTML = 'Add New Project';
+newBtn.setAttribute('class', 'button is-success is-light');
+newBtn.onclick = newProject;
+document.getElementById('newButtons').appendChild(newBtn);
