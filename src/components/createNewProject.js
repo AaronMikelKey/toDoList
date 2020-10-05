@@ -35,6 +35,9 @@ export default function newProject() {
         priority: 'none',
         completed: 'incomplete'}
     };
-    projectList = localStorage.getItem('projects').length;
-    localStorage.projects[projectList] = newProject;
+    let oldList = JSON.parse(localStorage.projects);
+    oldList.push(newProject);
+    oldList = JSON.stringify(oldList);
+    localStorage.setItem('projects', oldList);
+    console.log(JSON.parse(localStorage.projects));
 }

@@ -1,3 +1,5 @@
+import editBox from './editBox';
+
 export default function newListItem() {
 //Main box item
 const box = document.createElement('div');
@@ -17,6 +19,7 @@ faAngle.setAttribute('aria-hidden', 'true');
 const faEdit = document.createElement('i');
 faEdit.setAttribute('class', 'fas fa-edit fa-2x');
 faEdit.setAttribute('aria-hidden', 'true');
+faEdit.onclick = editBox;
 
 //Title of the list item
 const title = document.createElement('h4');

@@ -1,15 +1,18 @@
 //Setup basic user storage
 export default function user() {
-    var projects = {projects: {
-        project1: {
-            title: 'Title',
-            description: 'Description of what the ToDo item is.',
-            dueDate: 'Oct 23, 2020',
-            priority: 'none',
-            completed: 'incomplete'
+    var projects = [];
+    
+    projects.push(
+        {
+        'project1': {
+            'title': 'Title',
+            'description': 'Description of what the ToDo item is.',
+            'dueDate': 'Oct 23, 2020',
+            'priority': 'none',
+            'completed': 'incomplete'
             }
         }
-    };
+    );
     var myJSON = JSON.stringify(projects);
     var userName = localStorage.getItem('name');
     if (userName === null) {
