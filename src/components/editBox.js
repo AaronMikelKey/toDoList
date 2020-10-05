@@ -1,7 +1,6 @@
 import storeLocal from "./storeLocal";
 
 export default function editBox() {
-    document.body.classList.add('.blur');
     const popUp = document.createElement('div');
     popUp.setAttribute('id', 'popUp');
 

@@ -1,8 +1,8 @@
 export default function storeLocal() {
     var projList = localStorage.getItem('projects');
     var length = projList.length;
-    document.body.classList.remove('blur');
-    document.getElementById('popUp').style.display = none;
+    var popUp = document.getElementById('popUp');
+    popUp.remove();
 
     //store local stuff
 }
