@@ -57,6 +57,6 @@ box.appendChild(deleteButton);
 box.appendChild(buttonContainer);
 
 //Append to list
-document.getElementsByClassName('list')[0].appendChild(box);
+document.getElementsByClassName('project')[0].appendChild(box);
 
 }

@@ -1,6 +1,6 @@
 import './styles/style.css';
 require('./styles/mystyles.scss');
-import newListItem from './components/createItemBox';
+import newListItem from './components/createToDoBox';
 
 //DayJS requirements
 const dayjs = require('dayjs');
@@ -16,6 +16,7 @@ document.getElementsByClassName('dueDate')[0].innerHTML = dayjs('2020-03-19').fo
 
 //Test button
 const btn = document.createElement('button');
-btn.innerHTML = "click me";
+btn.innerHTML = "Add to do item";
+btn.setAttribute('class', 'fas fa-plus');
 btn.onclick = newListItem;
-document.getElementById('main').appendChild(btn);
+document.getElementsByClassName('project')[0].appendChild(btn);
