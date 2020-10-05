@@ -16,31 +16,17 @@ const dateF = 'MMM DD, YYYY';
 document.getElementsByClassName('dueDate')[0].innerHTML = dayjs('2020-03-19').format(dateF);
 
 //Test button 
-/*
+
 const btn = document.createElement('button');
 btn.innerHTML = "Add to do item";
 btn.setAttribute('class', 'fas fa-plus');
 btn.onclick = newListItem;
-document.getElementsByClassName('project')[0].appendChild(btn);
-*/
+const firstProject = document.getElementById('project');
+firstProject.appendChild(btn);
+
 
 const newBtn = document.createElement('button');
 newBtn.innerHTML = 'Add New Project';
 newBtn.setAttribute('class', 'button is-success is-light');
 newBtn.onclick = newProject;
 document.getElementById('newButtons').appendChild(newBtn);
-
-/*
-
-const parent = document.getElementById('main');
-let child_nodes = parent.childNodes;
-for (let i=0;i<child_nodes.length;i++) {
-    let btn = document.createElement('button');
-    btn.innerHTML = "Add to do item";
-    btn.setAttribute('class', 'fas fa-plus');
-    let thisId = child_nodes[i].id;
-    btn.onclick = newListItem(thisId);
-    child_nodes[i].appendChild(btn);
-}
-
-*/

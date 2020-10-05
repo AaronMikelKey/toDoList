@@ -13,6 +13,11 @@ const faCheck = document.createElement('i');
 faCheck.setAttribute('class', 'far fa-square fa-2x');
 faAngle.setAttribute('aria-hidden', 'true');
 
+//Edit button
+const faEdit = document.createElement('i');
+faEdit.setAttribute('class', 'fas fa-edit fa-2x');
+faEdit.setAttribute('aria-hidden', 'true');
+
 //Title of the list item
 const title = document.createElement('h4');
 title.setAttribute('class', 'title is-4');
@@ -50,6 +55,7 @@ buttonContainer.appendChild(low);
 //Put it together
 box.appendChild(faAngle);
 box.appendChild(faCheck);
+box.appendChild(faEdit);
 box.appendChild(title);
 box.appendChild(description);
 box.appendChild(dueDate);
@@ -57,5 +63,5 @@ box.appendChild(deleteButton);
 box.appendChild(buttonContainer);
 
 //Append to list
-document.getElementById('main').appendChild(box);
+this.parentNode.appendChild(box);
 }
