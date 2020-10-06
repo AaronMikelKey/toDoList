@@ -28,16 +28,16 @@ export default function newProject() {
     //Append to page
     document.getElementById('main').appendChild(projectBox);
     //Append to localStorage 
-    const newProject = {projectName: {
+    const newProject = {project: {
         title: projectName,
          description: 'Description of what the ToDo item is.',
         dueDate: 'Oct 23, 2020',
         priority: 'none',
         completed: 'incomplete'}
     };
-    let oldList = JSON.parse(localStorage.projects);
+    let oldList = JSON.parse(window.localStorage.projects);
     oldList.push(newProject);
     oldList = JSON.stringify(oldList);
-    localStorage.setItem('projects', oldList);
-    console.log(JSON.parse(localStorage.projects));
+    window.localStorage.setItem('projects', oldList);
+    console.log(JSON.parse(window.localStorage.projects));
 }

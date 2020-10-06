@@ -1,5 +1,6 @@
 import './styles/style.css';
 require('./styles/mystyles.scss');
+import existingProjects from './components/existingProjects';
 import user from './components/user';
 import newListItem from './components/createToDoBox';
 import newProject from './components/createNewProject';
