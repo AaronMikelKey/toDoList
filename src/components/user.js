@@ -1,20 +1,16 @@
 import existingProjects from './existingProjects';
 //Setup basic user storage or retrieve existing user storage
 export default function user() {
-    var projects = [];
-    
-    projects.push(
-        {
-        'project': 'Project Title',
-        'object': {
-            'title': 'Title',
-            'description': 'Description of what the ToDo item is.',
-            'dueDate': 'Oct 23, 2020',
-            'priority': 'none',
-            'completed': 'incomplete'
-            }
-        }
-    );
+    var projects = 
+        [{"project":"Project Title", //Example project
+            "object": [ //array of todos, subject to change
+                {"title":"Title 2", //Title of todo
+                "description":"Description 2", //description of todo
+                "dueDate":"01/02/2021", //due date of todo
+                "priority":"none", //priority of todo
+                "completed":"incomplete"}, //completion of todo
+            ],
+        }];
     var myJSON = JSON.stringify(projects);
     var userName = window.localStorage.getItem('name');
     if (userName === null) {

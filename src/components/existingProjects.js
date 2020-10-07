@@ -5,10 +5,13 @@ import editBox from './editBox';
 export default function existingProjects() {
     //Array of existing projects
     let oldList = JSON.parse(window.localStorage.projects);
-    console.log(oldList);
+    console.log('Array of projects:')
+    console.log(oldList); //Array of projects
     for (let i=0;i<oldList.length;i++){
         //list of existing projects
         let projectName = oldList[i].project;
+        console.log('Project title:');
+        console.log(projectName);
         //Project div
         const projectBox = document.createElement('div');
         projectBox.setAttribute('class', 'project');
@@ -33,9 +36,10 @@ export default function existingProjects() {
         projectBox.setAttribute('id', projectName);
         projectBox.appendChild(btn);
         //Append toDos
-        let list = oldList[i].object;
-        let listLength = Object.keys(list).length;
-        for (let j=0;j<oldList.length;j++) {
+        let list = oldList[i].object; //array of ToDos
+        console.log('Array of toDos (list)');
+        console.log(list);
+        for (let j=0;j<list.length;j++) {
             //Main box item
             const box = document.createElement('div');
             box.setAttribute('class', 'box');
@@ -45,7 +49,7 @@ export default function existingProjects() {
             faAngle.setAttribute('aria-hidden', 'true');
             //Unchecked box <i> from font awesome
             const faCheck = document.createElement('i');
-            if (list.completed == 'incomplete') {
+            if (list[j].completed === 'incomplete') {
                 faCheck.setAttribute('class', 'far fa-square fa-2x');
             } else {
                 faCheck.setAttribute('class', 'far fa-check-square fa-2x')
@@ -61,16 +65,16 @@ export default function existingProjects() {
             //Title of the list item
             const title = document.createElement('h4');
             title.setAttribute('class', 'title is-4');
-            title.innerHTML = list.title;
+            title.innerHTML = list[j].title;
 
             //description of the item
             const description = document.createElement('p');
-            description.innerHTML = list.description;
+            description.innerHTML = list[j].description;
 
             //Due date item
             const dueDate = document.createElement('p');
             dueDate.setAttribute('class', 'dueDate');
-            dueDate.innerHTML = list.dueDate;
+            dueDate.innerHTML = list[j].dueDate;
 
             //Delete button
             const deleteButton = document.createElement('a');
