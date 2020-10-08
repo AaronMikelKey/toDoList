@@ -1,13 +1,41 @@
 import editBox from './editBox';
 
 export default function newListItem() {
-    //Get toDo box
-    const thisBox = this.parentNode;
-    //get Project div and id
-    const thisProject = thisBox.parentNode;
-    const projId = thisProject.id;
+    const thisBox = this.parentNode; // (add to do item), parent node = project div
+    const projId = thisBox.id;
     //get localStorage arr of projects
-    const projectList = localStorage.getItem('projects'); //arr of projects
+    const projectList = JSON.parse(window.localStorage.projects); //arr of projects
+
+    /*
+        To fix this, we need to: 
+        -- get() id of project from project div, 
+        -- get() array of [projects],
+        --match id with [projects.project],
+        --then get() array of [projects.toDos],
+        --then push entered info to [project.toDos],
+        then set [projects] to the new object (same [projects],
+             new [project.toDos] array)
+
+    [
+        {"project":"Project Title",
+        "toDos":[
+            {"title":"Title 2",
+            "description":"Description 2",
+            "dueDate":"01/02/2021",
+            "priority":"none",
+            "completed":"incomplete"}
+        ],
+        {"project":"Second Project",
+        "toDos":[
+            {"title":"Title 2",
+            "description":"Description 2",
+            "dueDate":"01/02/2021",
+            "priority":"none",
+            "completed":"incomplete"}
+        ],
+    ]
+    */
+
     //Create popup div
     const popUp = document.createElement('div');
     popUp.setAttribute('id', 'popUp');
@@ -16,10 +44,12 @@ export default function newListItem() {
     titleEntry.setAttribute('type', 'text');
     titleEntry.setAttribute('id', 'title');
     titleEntry.setAttribute('placeholder', 'Title');
+    titleEntry.setAttribute('required', 'required');
     //Description entry
     const descriptionEntry = document.createElement('textarea');
     descriptionEntry.setAttribute('id', 'description');
     descriptionEntry.setAttribute('placeholder', 'Description');
+    descriptionEntry.setAttribute('required', 'required');
     //Date entry
     const dateEntry = document.createElement('input');
     dateEntry.setAttribute('type', 'text');
@@ -27,48 +57,52 @@ export default function newListItem() {
     const dateRegExp = /(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d/;
     dateEntry.setAttribute('pattern', 'dateRegExp');
     dateEntry.setAttribute('placeholder', 'MM/DD/YYYY');
+    dateEntry.setAttribute('required', 'required');
     //submit button
     const submit = document.createElement('button');
     submit.setAttribute('class', 'button is-success is-blur');
     submit.innerHTML = "Submit";
+    
     //submit function to save data and remove popup
     let valueArr = [];
-    const newList = JSON.parse(projectList.object); //Array of ToDos
-    let newObject = "";
     submit.onclick = function() {
+        var newList = []; //Array of ToDos
+        let newObject = "";
         for (let i=0;i<projectList.length;i++) {
             if (projId === projectList[i].project) {
+                newList = projectList[i].toDos; //Array of ToDos
                 let newTitle = document.getElementById('title').value;
                 let newDescription = document.getElementById('description').value;
                 let newDate = document.getElementById('date').value;
                 if (newTitle != undefined) {
-                    thisBox.querySelector('.title').innerHTML = newTitle;
                     valueArr.push(newTitle);
                 };
                 if (newDescription != undefined) {
-                    thisBox.querySelector('p').innerHTML = newDescription;
                     valueArr.push(newDescription);
                 };
                 if (newDate != undefined) {
-                    thisBox.querySelector('.dueDate').innerHTML = newDate;
                     valueArr.push(newDate);
                 };
-                newObject = {
-                    "title": newTitle, //Title of todo
-                    "description": newDescription, //description of todo
-                    "dueDate": newDate, //due date of todo
-                    "priority":"none", //priority of todo
-                    "completed":"incomplete" //completion of todo
-                };
-            } 
-        }
-        newList.push(newObject); //New ToDo
-        projectList.push(newList);
-        localStorage.setItem('projects', newList);
-        console.log(localStorage.projects)
+            }
+        newObject = {
+            "title": valueArr[0], //Title of todo
+            "description": valueArr[1], //description of todo
+            "dueDate": valueArr[2], //due date of todo
+            "priority":"none", //priority of todo
+            "completed":"incomplete" //completion of todo
+        };
+        if (newObject != "") {
+        newList.push(newObject); //New ToDo pushed to toDos arr
+        let newTodos = JSON.stringify(projectList);
+        localStorage.setItem('projects', newTodos);
         var popUp = document.getElementById('popUp');
         popUp.remove();
         append();
+        
+        } else {
+           return alert('Error');
+        }
+    }
     };
     //cancel button and function to remove popup
     const cancel = document.createElement('button');
@@ -161,6 +195,6 @@ export default function newListItem() {
         box.appendChild(deleteButton);
         box.appendChild(buttonContainer);
         //Append to list
-        this.parentNode.appendChild(box);
+        thisBox.appendChild(box);
     }
 }

@@ -3,7 +3,7 @@ import existingProjects from './existingProjects';
 export default function user() {
     var projects = 
         [{"project":"Project Title", //Example project
-            "object": [ //array of todos, subject to change
+            "toDos": [ //array of todos, subject to change
                 {"title":"Title 2", //Title of todo
                 "description":"Description 2", //description of todo
                 "dueDate":"01/02/2021", //due date of todo

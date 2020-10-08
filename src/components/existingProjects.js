@@ -4,14 +4,10 @@ import editBox from './editBox';
 
 export default function existingProjects() {
     //Array of existing projects
-    let oldList = JSON.parse(window.localStorage.projects);
-    console.log('Array of projects:')
-    console.log(oldList); //Array of projects
-    for (let i=0;i<oldList.length;i++){
+    let projectList = JSON.parse(window.localStorage.projects);
+    for (let i=0;i<projectList.length;i++){
         //list of existing projects
-        let projectName = oldList[i].project;
-        console.log('Project title:');
-        console.log(projectName);
+        let projectName = projectList[i].project;
         //Project div
         const projectBox = document.createElement('div');
         projectBox.setAttribute('class', 'project');
@@ -36,13 +32,13 @@ export default function existingProjects() {
         projectBox.setAttribute('id', projectName);
         projectBox.appendChild(btn);
         //Append toDos
-        let list = oldList[i].object; //array of ToDos
-        console.log('Array of toDos (list)');
-        console.log(list);
+        let list = projectList[i].toDos; //array of ToDos
         for (let j=0;j<list.length;j++) {
             //Main box item
+            const thisToDo = list[i].title;
             const box = document.createElement('div');
             box.setAttribute('class', 'box');
+            box.setAttribute('id',thisToDo);
             //Angle <i> from font awesome
             const faAngle = document.createElement('i');
             faAngle.setAttribute('class', 'fas fa-angle-down fa-2x');

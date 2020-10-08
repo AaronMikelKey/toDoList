@@ -6,7 +6,7 @@ export default function editBox() {
     const thisProject = thisBox.parentNode;
     const projId = thisProject.id;
     //get localStorage arr of projects
-    const projectList = JSON.parse(localStorage.getItem('projects'));
+    const projectList = JSON.parse(localStorage.getItem('projects')); 
     //Create popup div
     const popUp = document.createElement('div');
     popUp.setAttribute('id', 'popUp');
@@ -34,32 +34,33 @@ export default function editBox() {
     submit.onclick = function() {
         for (let i=0;i<projectList.length;i++) {
             if (projId === projectList[i].project) {
-                let thisProject = projectList[i].project.object;
-                for (let j=0;j<thisProject.length;j++) {
-                    if (thisProject[j].title === thisId) {
+                let thisToDo = projectList[i].toDos;
+                for (let j=0;j<thisToDo.length;j++) {
+                    if (thisToDo[j].title === thisId) {
                         let newTitle = document.getElementById('title').value;
                         let newDescription = document.getElementById('description').value;
                         let newDate = document.getElementById('date').value;
                         if (newTitle != undefined) {
-                            thisProject[j].title = newTitle;
+                            thisToDo[j].title = newTitle;
+                            console.log(thisToDo.title);
                             thisBox.querySelector('.title').innerHTML = newTitle;
                         };
                         if (newDescription != undefined) {
-                            thisProject[j].description = newDescription;
+                            thisToDo[j].description = newDescription;
                             thisBox.querySelector('p').innerHTML = newDescription;
                         };
                         if (newDate != undefined) {
-                            thisProject[j].object.dueDate = newDate;
+                            thisToDo[j].dueDate = newDate;
                             thisBox.querySelector('.dueDate').innerHTML = newDate;
                         };
-                        let newList = JSON.stringify(projectList);
-                        localStorage.setItem('projects', newList);
-                        var popUp = document.getElementById('popUp');
-                        popUp.remove();
                     }
                 }
             }
         }
+        let newList = JSON.stringify(projectList);
+        localStorage.setItem('projects', newList);
+        var popUp = document.getElementById('popUp');
+        popUp.remove();
     };
     //cancel button and function to remove popup
     const cancel = document.createElement('button');
