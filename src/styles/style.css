@@ -47,3 +47,14 @@ header {
     background-color: white;
     border-radius: 8px;
 }
+
+@keyframes fade {
+    0% { background-color: #55ff8d; }
+    100% { background-color: #FFFFFF; }
+}
+.completed {
+    background-color: white !important;
+    animation: fade 0.8s ease-in-out;
+    /* want to make a flash of green and then fade out
+    */
+}

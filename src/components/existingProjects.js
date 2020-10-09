@@ -3,6 +3,8 @@ import projectMinimize from './projectMinimize';
 import editBox from './editBox';
 import deleteTodo from './deleteTodo';
 import priority from './priority';
+import checked from './checked';
+import toDoMinimize from './toDoMinimize';
 
 export default function existingProjects() {
     //Array of existing projects
@@ -45,6 +47,8 @@ export default function existingProjects() {
             const faAngle = document.createElement('i');
             faAngle.setAttribute('class', 'fas fa-angle-down fa-2x');
             faAngle.setAttribute('aria-hidden', 'true');
+            faAngle.onclick = toDoMinimize;
+
             //Unchecked box <i> from font awesome
             const faCheck = document.createElement('i');
             if (item.completed === 'incomplete') {
@@ -52,7 +56,8 @@ export default function existingProjects() {
             } else {
                 faCheck.setAttribute('class', 'far fa-check-square fa-2x')
             }
-            faAngle.setAttribute('aria-hidden', 'true');
+            faCheck.setAttribute('aria-hidden', 'true');
+            faCheck.onclick = checked;
 
             //Edit button
             const faEdit = document.createElement('i');
@@ -124,7 +129,7 @@ export default function existingProjects() {
             box.appendChild(deleteButton);
             box.appendChild(buttonContainer);
 
-            //Append to list
+            //Append to list of to dos
             projectBox.appendChild(box);
         }
         //Append to page
