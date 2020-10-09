@@ -2,6 +2,7 @@ import newListItem from './createToDoBox';
 import projectMinimize from './projectMinimize';
 import editBox from './editBox';
 import deleteTodo from './deleteTodo';
+import priority from './priority';
 
 export default function existingProjects() {
     //Array of existing projects
@@ -86,12 +87,28 @@ export default function existingProjects() {
             const high = document.createElement('button');
             const medium = document.createElement('button');
             const low = document.createElement('button');
-            high.setAttribute('class', 'button is-danger is-light is-small');
+            // item.priority = "High"
+            if (item.priority == "High") {
+            high.setAttribute('class', 'button is-danger');
+            } else {
+                high.setAttribute('class', 'button is-danger is-light is-small');
+            }
             high.innerHTML = 'High';
-            medium.setAttribute('class', 'button is-warning is-light is-small');
+            high.onclick = priority;
+            if (item.priority == "Medium") {
+            medium.setAttribute('class', 'button is-warning');
+            } else {
+                medium.setAttribute('class', 'button is-warning is-light is-small')
+            }
             medium.innerHTML = 'Medium';
+            medium.onclick = priority;
+            if (item.priority == "Low") {
+                low.setAttribute('class', 'button is-info');
+            } else {
             low.setAttribute('class', 'button is-info is-light is-small');
+            }
             low.innerHTML = 'Low';
+            low.onclick = priority;
             //Appending to button container
             buttonContainer.appendChild(high);
             buttonContainer.appendChild(medium);
