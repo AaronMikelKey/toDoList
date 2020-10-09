@@ -1,6 +1,7 @@
 import newListItem from './createToDoBox';
 import projectMinimize from './projectMinimize';
 import editBox from './editBox';
+import deleteTodo from './deleteTodo';
 
 export default function existingProjects() {
     //Array of existing projects
@@ -75,6 +76,7 @@ export default function existingProjects() {
             //Delete button
             const deleteButton = document.createElement('a');
             deleteButton.setAttribute('class', 'delete');
+            deleteButton.onclick = deleteTodo;
 
             //Priority button container
             const buttonContainer = document.createElement('div');
