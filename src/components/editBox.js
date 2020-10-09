@@ -41,23 +41,26 @@ export default function editBox() {
                         let newDescription = document.getElementById('description').value;
                         let newDate = document.getElementById('date').value;
                         if (newTitle != undefined) {
-                            thisToDo[j].title = newTitle;
+                            projectList[i].toDos[j].title = newTitle;
                             console.log(thisToDo.title);
                             thisBox.querySelector('.title').innerHTML = newTitle;
+                            thisBox.setAttribute('id', newTitle);
                         };
                         if (newDescription != undefined) {
-                            thisToDo[j].description = newDescription;
+                            projectList[i].toDos[j].description = newDescription;
                             thisBox.querySelector('p').innerHTML = newDescription;
                         };
                         if (newDate != undefined) {
-                            thisToDo[j].dueDate = newDate;
+                            projectList[i].toDos[j].dueDate = newDate;
                             thisBox.querySelector('.dueDate').innerHTML = newDate;
                         };
+                        break;
                     }
                 }
             }
         }
         let newList = JSON.stringify(projectList);
+        console.log(newList);
         localStorage.setItem('projects', newList);
         var popUp = document.getElementById('popUp');
         popUp.remove();

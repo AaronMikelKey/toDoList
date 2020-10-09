@@ -33,9 +33,9 @@ export default function existingProjects() {
         projectBox.appendChild(btn);
         //Append toDos
         let list = projectList[i].toDos; //array of ToDos
-        for (let j=0;j<list.length;j++) {
+        for (const item of list) {
             //Main box item
-            const thisToDo = list[i].title;
+            const thisToDo = item.title;
             const box = document.createElement('div');
             box.setAttribute('class', 'box');
             box.setAttribute('id',thisToDo);
@@ -45,7 +45,7 @@ export default function existingProjects() {
             faAngle.setAttribute('aria-hidden', 'true');
             //Unchecked box <i> from font awesome
             const faCheck = document.createElement('i');
-            if (list[j].completed === 'incomplete') {
+            if (item.completed === 'incomplete') {
                 faCheck.setAttribute('class', 'far fa-square fa-2x');
             } else {
                 faCheck.setAttribute('class', 'far fa-check-square fa-2x')
@@ -61,16 +61,16 @@ export default function existingProjects() {
             //Title of the list item
             const title = document.createElement('h4');
             title.setAttribute('class', 'title is-4');
-            title.innerHTML = list[j].title;
+            title.innerHTML = item.title;
 
             //description of the item
             const description = document.createElement('p');
-            description.innerHTML = list[j].description;
+            description.innerHTML = item.description;
 
             //Due date item
             const dueDate = document.createElement('p');
             dueDate.setAttribute('class', 'dueDate');
-            dueDate.innerHTML = list[j].dueDate;
+            dueDate.innerHTML = item.dueDate;
 
             //Delete button
             const deleteButton = document.createElement('a');
