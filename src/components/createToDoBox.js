@@ -160,13 +160,15 @@ export default function newListItem() {
         faEdit.onclick = editBox;
 
         //Delete button
-        const deleteButton = document.createElement('a');
-        deleteButton.setAttribute('class', 'delete');
+        const deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<span>Delete</span><span class="icon is-small"><i class="fas fa-times"></i></span>'
+        deleteButton.setAttribute('class', 'button is-danger is-outlined deleteToDo');
+        deleteButton.onclick = deleteTodo;
 
         //Priority button container
         const buttonContainer = document.createElement('div');
-        buttonContainer.setAttribute('class', 'buttons');
-
+        buttonContainer.setAttribute('class', 'buttons is-right');
+        
         //Priority buttons
         const high = document.createElement('button');
         const medium = document.createElement('button');
@@ -189,10 +191,10 @@ export default function newListItem() {
         box.appendChild(faAngle);
         box.appendChild(faCheck);
         box.appendChild(faEdit);
+        box.appendChild(deleteButton);
         box.appendChild(title);
         box.appendChild(description);
         box.appendChild(dueDate);
-        box.appendChild(deleteButton);
         box.appendChild(buttonContainer);
         //Append to list
         thisBox.appendChild(box);

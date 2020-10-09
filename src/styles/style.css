@@ -36,6 +36,22 @@ header {
     border-bottom: 1px solid black;
 }
 
+i:hover {
+    color: #009e08;
+}
+/*  */
+.deleteToDo {
+    float: right;
+}
+
+.dueDate {
+    margin-top: 10px;
+}
+
+.buttons {
+    margin-top: -30px;
+}
+
 #popUp {
     height: 80vh;
     width: 80vw;

@@ -5,6 +5,10 @@ import deleteTodo from './deleteTodo';
 import priority from './priority';
 import checked from './checked';
 import toDoMinimize from './toDoMinimize';
+const dayjs = require('dayjs');
+const customParseFormat = require('./customParseFormat');
+dayjs.extend(customParseFormat);
+const dateF = 'MMM DD, YYYY';
 
 export default function existingProjects() {
     //Array of existing projects
@@ -18,12 +22,12 @@ export default function existingProjects() {
         projectBox.setAttribute('id', projectName);
         //Minimizing button
         const faAngle = document.createElement('i');
-        faAngle.setAttribute('class', 'fas fa-angle-down fa-2x');
+        faAngle.setAttribute('class', 'fas fa-angle-down fa-2x mr-3');
         faAngle.setAttribute('aria-hidden', 'true');
         faAngle.onclick = projectMinimize;
         //Project title
         const h3 = document.createElement('h3');
-        h3.setAttribute('class', 'title is-3');
+        h3.setAttribute('class', 'title is-3 mr-3');
         h3.innerHTML = projectName;
         //Button to add todo item
         const btn = document.createElement('button');
@@ -45,25 +49,26 @@ export default function existingProjects() {
             box.setAttribute('id',thisToDo);
             //Angle <i> from font awesome
             const faAngle = document.createElement('i');
-            faAngle.setAttribute('class', 'fas fa-angle-down fa-2x');
+            faAngle.setAttribute('class', 'fas fa-angle-down fa-2x mr-3');
             faAngle.setAttribute('aria-hidden', 'true');
             faAngle.onclick = toDoMinimize;
 
             //Unchecked box <i> from font awesome
             const faCheck = document.createElement('i');
             if (item.completed === 'incomplete') {
-                faCheck.setAttribute('class', 'far fa-square fa-2x');
+                faCheck.setAttribute('class', 'far fa-square fa-2x mr-3');
             } else {
-                faCheck.setAttribute('class', 'far fa-check-square fa-2x')
+                faCheck.setAttribute('class', 'far fa-check-square fa-2x mr-3')
             }
             faCheck.setAttribute('aria-hidden', 'true');
             faCheck.onclick = checked;
 
             //Edit button
             const faEdit = document.createElement('i');
-            faEdit.setAttribute('class', 'fas fa-edit fa-2x');
+            faEdit.setAttribute('class', 'fas fa-edit fa-2x mr-3');
             faEdit.setAttribute('aria-hidden', 'true');
             faEdit.onclick = editBox;
+
 
             //Title of the list item
             const title = document.createElement('h4');
@@ -74,19 +79,20 @@ export default function existingProjects() {
             const description = document.createElement('p');
             description.innerHTML = item.description;
 
-            //Due date item
+            //Due date item dayjs('2020-03-19').format(dateF)
             const dueDate = document.createElement('p');
             dueDate.setAttribute('class', 'dueDate');
-            dueDate.innerHTML = item.dueDate;
+            dueDate.innerHTML = dayjs(item.dueDate).format(dateF);
 
             //Delete button
-            const deleteButton = document.createElement('a');
-            deleteButton.setAttribute('class', 'delete');
+            const deleteButton = document.createElement('button');
+            deleteButton.innerHTML = '<span>Delete</span><span class="icon is-small"><i class="fas fa-times"></i></span>'
+            deleteButton.setAttribute('class', 'button is-danger is-outlined deleteToDo');
             deleteButton.onclick = deleteTodo;
 
             //Priority button container
             const buttonContainer = document.createElement('div');
-            buttonContainer.setAttribute('class', 'buttons');
+            buttonContainer.setAttribute('class', 'buttons is-right');
 
             //Priority buttons
             const high = document.createElement('button');
@@ -123,10 +129,10 @@ export default function existingProjects() {
             box.appendChild(faAngle);
             box.appendChild(faCheck);
             box.appendChild(faEdit);
+            box.appendChild(deleteButton);
             box.appendChild(title);
             box.appendChild(description);
             box.appendChild(dueDate);
-            box.appendChild(deleteButton);
             box.appendChild(buttonContainer);
 
             //Append to list of to dos

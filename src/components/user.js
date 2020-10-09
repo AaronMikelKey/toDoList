@@ -2,11 +2,13 @@ import existingProjects from './existingProjects';
 //Setup basic user storage or retrieve existing user storage
 export default function user() {
     var projects = 
-        [{"project":"Project Title", //Example project
+        [{"project":"My First Project", //Example project
             "toDos": [ //array of todos, subject to change
-                {"title":"Title 2", //Title of todo
-                "description":"Description 2", //description of todo
-                "dueDate":"01/02/2021", //due date of todo
+                {"title":"Example ToDo Name", //Title of todo
+                "description":"Description of what I want to do. \
+                Or maybe something that needs to be done first. \
+                Could also just be a reminder of why you want to do this.", //description of todo
+                "dueDate":"12/31/2021", //due date of todo
                 "priority":"none", //priority of todo
                 "completed":"incomplete"}, //completion of todo
             ],

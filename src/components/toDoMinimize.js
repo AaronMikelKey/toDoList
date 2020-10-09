@@ -14,13 +14,13 @@ export default function toDoMinimize() {
         //0 {angle} = inline-block
         //1 {check} = inline-block
         //2 {edit} = inline-block
-        //3 {title} = block
-        //4 {description} = block
-        //5 {dueDate} = block
-        //6 {delete} = inline-block
-        //7 {buttons} = flex
+        //3 {delete} = inline-block 
+        //4 {title} = block 
+        //5 {description} = block 
+        //6 {dueDate} = block 
+        //7 {buttons} = flex 
         for (let i=2;i<siblings.length;i++){
-            if (i === 3) { siblings[i].style.display = 'inline-block'; continue;}
+            if (i === 4) { siblings[i].style.display = 'inline-block'; continue;}
                 siblings[i].style.display = 'none';
         }
         } else {
@@ -28,10 +28,10 @@ export default function toDoMinimize() {
                 'inline-block', 
                 'inline-block', 
                 'inline-block', 
-                'block', 
-                'block', 
-                'block', 
                 'inline-block', 
+                'block', 
+                'block', 
+                'block', 
                 'flex'
             ]
             let siblings = this.parentNode.childNodes;
